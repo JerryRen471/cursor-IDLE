@@ -1,0 +1,77 @@
+{
+  "name": "cursor-idle",
+  "displayName": "Cursor IDLE",
+  "description": "A lightweight Cursor-like AI coding assistant extension for VS Code.",
+  "version": "0.0.1",
+  "publisher": "cursor-idle",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:cursorIdle.openChat",
+    "onCommand:cursorIdle.inlineEdit",
+    "onView:cursorIdle.chatView"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cursorIdle.openChat",
+        "title": "Cursor IDLE: Open Chat"
+      },
+      {
+        "command": "cursorIdle.inlineEdit",
+        "title": "Cursor IDLE: Inline Edit"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "cursorIdle",
+          "title": "Cursor IDLE",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "cursorIdle": [
+        {
+          "id": "cursorIdle.chatView",
+          "name": "AI Chat"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Cursor IDLE",
+      "properties": {
+        "cursorIdle.apiBase": {
+          "type": "string",
+          "default": "https://api.openai.com/v1",
+          "description": "Base URL for chat completion API"
+        },
+        "cursorIdle.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API key used by the LLM provider"
+        },
+        "cursorIdle.model": {
+          "type": "string",
+          "default": "gpt-4o-mini",
+          "description": "Model name used for chat completion"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.5.3"
+  }
+}
